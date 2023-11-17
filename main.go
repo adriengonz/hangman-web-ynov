@@ -9,36 +9,38 @@ import (
 
 type GameData struct {
 	OriginalWord     string
-	ToFind           string
+	hidden_word      []string
 	Attempts         int
-	LettersSuggested []string
+	used_letters     []string
 	Error            string
-	HangmanPositions [10]string
+	Pseudo           string
 }
+
+var currentdatagame *GameData
 
 func handler(w http. ResponseWriter, r *http. Request) {
 	switch r.URL.Path { // Execute un code block différent selon l'URL demandée
 	case "/home":
 		fmt.Fprintf(w, "tkt")
 	case "/test":
-		renderTemplate(w, "default")
+		fmt.Printf("test page")
 	default:
-		fmt.Fprintf(w, "Default Page")
+		renderTemplate(w, "default")
+		currentdatagame.Pseudo = r.FormValue("name")
+		fmt.Println(currentdatagame.Pseudo)
 	}
 }
 
-func renderTemplate (w http.ResponseWriter, htmlfile string) {
+func renderTemplate (w http.ResponseWriter, htmlfile string) { // Permet d'afficher une page web lors de l'appel de la fonction
 	t, err := template.ParseFiles("./templates/" + htmlfile + ".html")
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		http.Error(w, err.Error(), http.StatusInternalServerError) // Retourne une erreur dans les logs si une erreur est produite
 	}
 	t.Execute(w, nil)
 }
 
-var hidden_word []string // Variable sous forme de liste qui contient le mot caché
-var used_letters []string // Variable sous forme de liste qui contient les lettres utilisées
-
 func main() {
+	currentdatagame = &GameData{} // Initialisation d'une nouvelle instance de GameData
 	fmt.Println("Server running on port 8080")
 	fmt.Println("Access: http://localhost:8080")
 	http.HandleFunc("/", handler) // Initilaise la page par défaut
