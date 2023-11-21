@@ -1,5 +1,5 @@
 package main
-
+/*
 import (
 	"os"
 	"math/rand"
@@ -52,3 +52,4 @@ func Hidden(word string) { // Fonction qui compte le nombre de caractères dans 
 	}
 	fmt.Println(hidden_word)
 }
+*/

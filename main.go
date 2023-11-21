@@ -45,6 +45,7 @@ func main() {
 	fmt.Println("Access: http://localhost:8080")
 	http.HandleFunc("/", handler) // Initilaise la page par défaut
 	http.HandleFunc("/home", handler) // Initialise la page /home
+	http.Handle("./templates/", http.StripPrefix("/templates/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil) // Lance le serveur sur le port 8080
 	/*
 	PrintHangmanAscii() // Appel de la fonction pour afficher "Hangman" en ascii
