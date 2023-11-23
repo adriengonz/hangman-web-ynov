@@ -36,6 +36,8 @@ func main() {
 	currentdatagame.used_letters = append(currentdatagame.used_letters, "s")
 	fmt.Println("Server running on port 8080")
 	fmt.Println("Access: http://localhost:8080")
+	fs := http.FileServer(http.Dir("./templates"))
+	http.Handle("/static/", http.StripPrefix("/static", fs))
 	http.HandleFunc("/", handler) // Initilaise la page par défaut
 	http.HandleFunc("/home", handler) // Initialise la page /home
 	http.Handle("./templates/", http.StripPrefix("/templates/", http.FileServer(http.Dir("static"))))
