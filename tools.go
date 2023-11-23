@@ -1,5 +1,5 @@
 package main
-/*
+
 import (
 	"os"
 	"math/rand"
@@ -46,10 +46,9 @@ func WordPicker(line_number_of_word int) string { // Fonction qui recherche le m
 	return word
 }
 
-func Hidden(word string) { // Fonction qui compte le nombre de caractères dans le mot et qui les remplace par des underscore
-	for i := 0; i < len(word); i++ {
-		hidden_word = append(hidden_word , "_")
+func Hidden() { // Fonction qui compte le nombre de caractères dans le mot et qui les remplace par des underscore
+	for i := 0; i < len(currentdatagame.originalWord); i++ {
+		currentdatagame.hidden_word = append(currentdatagame.hidden_word , "_")
 	}
-	fmt.Println(hidden_word)
+	fmt.Println(currentdatagame.hidden_word)
 }
-*/
