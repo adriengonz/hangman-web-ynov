@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"time"
+	//"time"
 	"net/http"
 	"html/template"
 )
@@ -15,7 +15,10 @@ func handler(w http. ResponseWriter, r *http. Request) {
 		fmt.Printf("test page")
 	default:
 		renderTemplate(w, "default")
-		currentdatagame.pseudo = r.FormValue("name")
+		if currentdatagame.pseudo != ""  {
+		} else {
+			currentdatagame.pseudo = r.FormValue("name")
+		}
 		fmt.Println(currentdatagame.pseudo)
 	}
 }
@@ -30,15 +33,15 @@ func renderTemplate (w http.ResponseWriter, htmlfile string) { // Permet d'affic
 
 func main() {
 	currentdatagame = &GameData{} // Initialisation d'une nouvelle instance de GameData
-	/*
+	currentdatagame.used_letters = append(currentdatagame.used_letters, "s")
 	fmt.Println("Server running on port 8080")
 	fmt.Println("Access: http://localhost:8080")
 	http.HandleFunc("/", handler) // Initilaise la page par défaut
 	http.HandleFunc("/home", handler) // Initialise la page /home
 	http.Handle("./templates/", http.StripPrefix("/templates/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil) // Lance le serveur sur le port 8080
-	*/
-	
+
+	/*
 	PrintHangmanAscii() // Appel de la fonction pour afficher "Hangman" en ascii
 	fmt.Println("Bienvenue sur Hangman !")
 	fmt.Println("La partie va bientôt commencer..")
@@ -47,5 +50,5 @@ func main() {
 	currentdatagame.originalWord = WordPicker(RandomNumber()) // Initalisation du mot aléatoire a faire deviner
 	Hidden() // Modificiton du mot généré en underscore
 	RunHangman() // Lancement du jeu
-	
+	*/
 }
