@@ -4,25 +4,26 @@ import (
 	"fmt"
 	//"time"
 	"net/http"
-	"html/template"
 )
 
 func handler(w http. ResponseWriter, r *http. Request) {
-	switch r.URL.Path { // Execute un code block différent selon l'URL demandée
+	startpage(w)
+	/*switch r.URL.Path { // Execute un code block différent selon l'URL demandée
 	case "/home":
 		fmt.Fprintf(w, "tkt")
 	case "/test":
 		fmt.Printf("test page")
 	default:
-		renderTemplate(w, "default")
+		startpage(w, r)
 		if currentdatagame.pseudo != ""  {
 		} else {
 			currentdatagame.pseudo = r.FormValue("name")
 		}
 		fmt.Println(currentdatagame.pseudo)
-	}
+	}*/
 }
 
+/*
 func renderTemplate (w http.ResponseWriter, htmlfile string) { // Permet d'afficher une page web lors de l'appel de la fonction
 	t, err := template.ParseFiles("./templates/" + htmlfile + ".html")
 	if err != nil {
@@ -30,17 +31,18 @@ func renderTemplate (w http.ResponseWriter, htmlfile string) { // Permet d'affic
 	}
 	t.Execute(w, nil)
 }
+*/
 
 func main() {
-	currentdatagame = &GameData{} // Initialisation d'une nouvelle instance de GameData
-	currentdatagame.used_letters = append(currentdatagame.used_letters, "s")
+	Currentdatagame = &GameData{} // Initialisation d'une nouvelle instance de GameData
+	Currentdatagame.Used_letters = append(Currentdatagame.Used_letters, "s")
+	Currentdatagame.OriginalWord = "tkt"
 	fmt.Println("Server running on port 8080")
 	fmt.Println("Access: http://localhost:8080")
-	fs := http.FileServer(http.Dir("./templates"))
-	http.Handle("/static/", http.StripPrefix("/static", fs))
+	fs := http.FileServer(http.Dir("templates"))
+	http.Handle("/templates/", http.StripPrefix("/templates/", fs))
 	http.HandleFunc("/", handler) // Initilaise la page par défaut
-	http.HandleFunc("/home", handler) // Initialise la page /home
-	http.Handle("./templates/", http.StripPrefix("/templates/", http.FileServer(http.Dir("static"))))
+	//http.Handle("./templates/", http.StripPrefix("/templates/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil) // Lance le serveur sur le port 8080
 
 	/*

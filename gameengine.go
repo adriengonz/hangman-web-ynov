@@ -1,12 +1,12 @@
 package main
 
 type GameData struct {
-	originalWord     string
-	hidden_word      []string
-	used_letters     []string
-	try              int
-	pseudo           string
+	OriginalWord     string
+	Hidden_word      []string
+	Used_letters     []string
+	Try              int
+	Pseudo           string
 	Error            string
 }
 
-var currentdatagame *GameData
+var Currentdatagame *GameData
