@@ -7,20 +7,20 @@ import (
 )
 
 func handler(w http. ResponseWriter, r *http. Request) {
-	startpage(w)
-	/*switch r.URL.Path { // Execute un code block différent selon l'URL demandée
+	switch r.URL.Path { // Execute un code block différent selon l'URL demandée
 	case "/home":
 		fmt.Fprintf(w, "tkt")
 	case "/test":
 		fmt.Printf("test page")
 	default:
-		startpage(w, r)
-		if currentdatagame.pseudo != ""  {
+		//time.Sleep(2 * time.Second)
+		startpage(w)
+		if Currentdatagame.Pseudo != ""  {
 		} else {
-			currentdatagame.pseudo = r.FormValue("name")
+			Currentdatagame.Pseudo = r.FormValue("name")
 		}
-		fmt.Println(currentdatagame.pseudo)
-	}*/
+		fmt.Println(Currentdatagame.Pseudo)
+	}
 }
 
 /*
@@ -35,14 +35,11 @@ func renderTemplate (w http.ResponseWriter, htmlfile string) { // Permet d'affic
 
 func main() {
 	Currentdatagame = &GameData{} // Initialisation d'une nouvelle instance de GameData
-	Currentdatagame.Used_letters = append(Currentdatagame.Used_letters, "s")
-	Currentdatagame.OriginalWord = "tkt"
 	fmt.Println("Server running on port 8080")
 	fmt.Println("Access: http://localhost:8080")
 	fs := http.FileServer(http.Dir("templates"))
 	http.Handle("/templates/", http.StripPrefix("/templates/", fs))
 	http.HandleFunc("/", handler) // Initilaise la page par défaut
-	//http.Handle("./templates/", http.StripPrefix("/templates/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil) // Lance le serveur sur le port 8080
 
 	/*
