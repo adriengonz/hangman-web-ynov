@@ -1,38 +1,42 @@
 body {
-  background-color: #7997A1;
   font-family: SF-Pro, serif;
+  background: linear-gradient(-45deg, #FCFC62, #FDCD4A, #FE9E31, #FF4000);
+	background-size: 400% 400%;
+	animation: gradient 10s ease infinite;
+	height: 100vh;
 }
   
 @font-face { font-family: SF-Pro; src: url('./SF-Pro.ttf'); }
 
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 .rcorners1 {
+  text-align: center;
   border-radius: 25px;
-  background: #FCFC62;
-  padding: 20px; 
-  width: 200px;
-  height: 150px; 
+  background: #F1F15E;
+  padding: 30px;
+  width: 600px;
+  height: 300px;
 }
 
 .rcorners2 {
   border-radius: 25px;
-  background: #FDCD4A;
-  padding: 20px; 
+  background: #FF6F19;
+  padding: 20px;
   width: 200px;
-  height: 150px; 
+  height: 150px;
 }
 
-.rcorners3 {
-  border-radius: 25px;
-  background: #FE9E31;
-  padding: 20px; 
-  width: 200px;
-  height: 150px; 
-}
-
-.rcorners4 {
-  border-radius: 25px;
-  background: #FF4000;
-  padding: 20px; 
-  width: 200px;
-  height: 150px; 
+.title {
+  text-align: center;
 }
