@@ -14,6 +14,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("test page")
 	case "/main":
 		Currentdatagame.Pseudo = r.FormValue("name")
+		Currentdatagame.CurrentLetter = r.FormValue("letter")
 		startmainpage(w)
 	default:
 		fmt.Println(Currentdatagame.Pseudo)
@@ -34,6 +35,8 @@ func renderTemplate (w http.ResponseWriter, htmlfile string) { // Permet d'affic
 func main() {
 	running := true
 	Currentdatagame = &GameData{} // Initialisation d'une nouvelle instance de GameData
+	Currentdatagame.OriginalWord = "ouifi"
+	Currentdatagame.Hidden_word = []string{"_", "_", "_", "_", "_"}
 	//Currentdatagame.Pseudo = "test"
 	fmt.Println("Server running on port 8080")
 	fmt.Println("Access: http://localhost:8080")

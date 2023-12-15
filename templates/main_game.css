@@ -19,11 +19,6 @@ body {
 		background-position: 0% 50%;
 	}
 }
-
-  header {
-    background-color: #fff;
-    padding: 10px;
-  }
   
   .title {
     text-align: center;
@@ -40,10 +35,21 @@ body {
     border-radius: 25px;
     background: #F1F15E;
     padding: 30px;
-    width: 600px;
-    height: 300px;
+    width: 800px;
+    height: 500px;
   }
-  
+
+  button {
+    background-color: #00000000;
+    border: none;
+    cursor: pointer;
+  }
+
+  .orange {
+    height : 70px;
+    width : 70px;
+    background-color: #00000000;
+  }
 
   /*
   .mot {
@@ -105,23 +111,4 @@ body {
     background-color: #000;
   }
   
-  .saisie {
-    margin-top: 20px;
-  }
   */
-  input {
-    width: 100px;
-    height: 40px;
-    border: 1px solid #000;
-    border-radius: 5px;
-  }
-  
-  button {
-    width: 100px;
-    height: 40px;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  

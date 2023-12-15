@@ -6,6 +6,7 @@ type GameData struct {
 	Used_letters     []string
 	Try              int
 	Pseudo           string
+	CurrentLetter    string
 	Error            string
 }
 
