@@ -29,12 +29,14 @@ body {
   height: 300px;
 }
 
-.rcorners2 {
-  border-radius: 25px;
-  background: #FF6F19;
-  padding: 20px;
-  width: 200px;
-  height: 150px;
+.flexbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+    background: #FCFC62;
 }
 
 .title {

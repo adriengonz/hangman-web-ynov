@@ -1,0 +1,127 @@
+body {
+  font-family: SF-Pro, serif;
+  background: linear-gradient(-45deg, #FCFC62, #FDCD4A, #FE9E31, #FF4000);
+	background-size: 400% 400%;
+	animation: gradient 10s ease infinite;
+	height: 100vh;
+}
+  
+@font-face { font-family: SF-Pro; src: url('./SF-Pro.ttf'); }
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+  header {
+    background-color: #fff;
+    padding: 10px;
+  }
+  
+  .title {
+    text-align: center;
+  }
+  
+  .flexbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rcorners1 {
+    text-align: center;
+    border-radius: 25px;
+    background: #F1F15E;
+    padding: 30px;
+    width: 600px;
+    height: 300px;
+  }
+  
+
+  /*
+  .mot {
+    margin: 0 auto;
+    width: 400px;
+    text-align: left;
+  }
+  
+  .lettres {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .lettre {
+    margin: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    color: #fff;
+  }
+  
+  .lettre.correcte {
+    background-color: #00ff00;
+  }
+  
+  .lettre.incorrecte {
+    background-color: #ff0000;
+  }
+  
+  .bonhomme {
+    margin: 0 auto;
+    width: 400px;
+  }
+  
+  .tete {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #000;
+  }
+  
+  .corps {
+    width: 200px;
+    height: 100px;
+    border-radius: 10px;
+    background-color: #000;
+  }
+  
+  .bras {
+    width: 50px;
+    height: 100px;
+    background-color: #000;
+  }
+  
+  .jambe {
+    width: 50px;
+    height: 100px;
+    background-color: #000;
+  }
+  
+  .saisie {
+    margin-top: 20px;
+  }
+  */
+  input {
+    width: 100px;
+    height: 40px;
+    border: 1px solid #000;
+    border-radius: 5px;
+  }
+  
+  button {
+    width: 100px;
+    height: 40px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
