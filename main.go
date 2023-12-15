@@ -18,6 +18,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		startmainpage(w)
 	default:
 		fmt.Println(Currentdatagame.Pseudo)
+		Currentdatagame.OriginalWord = WordPicker(RandomNumber()) // Initalisation du mot aléatoire a faire deviner
+		Hidden() // Modificiton du mot généré en underscore
 		startpage(w)
 	}
 }
@@ -46,6 +48,7 @@ func main() {
 		http.HandleFunc("/", handler)     // Initilaise la page par défaut
 		http.ListenAndServe(":8080", nil) // Lance le serveur sur le port 8080
 	}
+	
 
 	/*
 		PrintHangmanAscii() // Appel de la fonction pour afficher "Hangman" en ascii
