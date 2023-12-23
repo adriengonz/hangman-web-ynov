@@ -13,13 +13,19 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	case "/test":
 		fmt.Printf("test page")
 	case "/main":
+		if Currentdatagame.Running {
 		Currentdatagame.Pseudo = r.FormValue("name")
 		Currentdatagame.CurrentLetter = r.FormValue("letter")
+		RunHangman()
 		startmainpage(w)
+		} else {
+
+		}
+		// Selon si perdu ou gagné, lancer une autre page
 	default:
 		fmt.Println(Currentdatagame.Pseudo)
-		Currentdatagame.OriginalWord = WordPicker(RandomNumber()) // Initalisation du mot aléatoire a faire deviner
-		Hidden() // Modificiton du mot généré en underscore
+		//Currentdatagame.OriginalWord = WordPicker(RandomNumber()) // Initalisation du mot aléatoire a faire deviner
+		//Hidden() // Modificiton du mot généré en underscore
 		startpage(w)
 	}
 }
@@ -37,9 +43,9 @@ func renderTemplate (w http.ResponseWriter, htmlfile string) { // Permet d'affic
 func main() {
 	running := true
 	Currentdatagame = &GameData{} // Initialisation d'une nouvelle instance de GameData
+	Currentdatagame.Running = true
 	Currentdatagame.OriginalWord = "ouifi"
 	Currentdatagame.Hidden_word = []string{"_", "_", "_", "_", "_"}
-	//Currentdatagame.Pseudo = "test"
 	fmt.Println("Server running on port 8080")
 	fmt.Println("Access: http://localhost:8080")
 	if running {

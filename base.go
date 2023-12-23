@@ -2,75 +2,112 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
-func RunHangman() { // Fonction majeure du jeu
-	presentInWord := false // Valeur qui vérifie si la lettre est présente dans le mot caché
-	wordNotRevealed := false // Valeur qui vérifie si le mot entier a été deviné
-	draw_hangman(Currentdatagame.Try) // Appel de la fonction qui affiche le pendu
-	letter := ""
-	fmt.Println(letter)
+// Si y a une lettre en double, on fait rien
+// Le dessin Hangman se basera sur les lettres deja utilisées (essais)
+// Stocker le resultat (gagné ou perdu) dans la variable gameengine et selon le resultat, 
+// rediriger vers la page web perdu ou gagné
 
-	fmt.Println("Déjà utilisé(s) : ", Currentdatagame.Used_letters)
-	fmt.Println("\nEntrez votre choix :")
-	fmt.Scanln(&letter) // Récupération de l'entrée utilisateur (lettre)
+func RunHangman() { // Fonction majeure du jeu
+	if Currentdatagame.CurrentLetter !="" {
+		CheckUsedLetter()
+		fmt.Println("[VERBOSE] Le check de la lettre utilisée a été effectué")
+		LetterPresent()
+		fmt.Println("[VERBOSE] Le check de la lettre dans le mot a été effectué")
+		CheckWordRevealed()
+		fmt.Println("[VERBOSE] Le check du mot révélé a été effectué")
+	}
+	Currentdatagame.CurrentLetter = ""
+	fmt.Println("[VERBOSE] La lettre temporaire a été vidée")
+/*
+	presentInWord := false // Valeur qui vérifie si la lettre est présente dans le mot caché
+	draw_hangman(Currentdatagame.Try) // Appel de la fonction qui affiche le pendu
 	
 	for _, char := range Currentdatagame.Used_letters {
-		if letter == string(char) {
-			fmt.Println("Essayez autre chose, vous avez déjà essayé ceci !")
-			time.Sleep(1 * time.Second)
-			Clear()
-			RunHangman()
+		if Currentdatagame.CurrentLetter == string(char) {
+
+		} else {
+			Currentdatagame.Used_letters = append(Currentdatagame.Used_letters, Currentdatagame.CurrentLetter)
 		}
 	}
-	Currentdatagame.Used_letters = append(Currentdatagame.Used_letters, letter)
 	
-	if len(letter) < 1 || len(letter) > 1 { // Condition qui vérifie s'il n'y a qu'une lettre entrée
-	fmt.Println("Impossible, entrez une seule lettre.")
-	time.Sleep(1 * time.Second)
-	RunHangman()
-	} else {
-		presentInWord = false // Reinitialisation de la variable
-		for i := 0; i < len(Currentdatagame.OriginalWord); i++ { // Boucle qui vérifie si la lettre entrée est présente dans le mot
-			if letter == string(Currentdatagame.OriginalWord[i]) {
-			presentInWord = true // Si la lettre est présente, la variable passe vraie
+	presentInWord = false // Reinitialisation de la variable
+	for i := 0; i < len(Currentdatagame.OriginalWord); i++ { // Boucle qui vérifie si la lettre entrée est présente dans le mot
+		if Currentdatagame.CurrentLetter == string(Currentdatagame.OriginalWord[i]) {
+		presentInWord = true // Si la lettre est présente, la variable passe vraie
 		}
 	}
-		if presentInWord { // Si la lettre est présente dans le mot
-			fmt.Println("La lettre", letter, "est dans le mot")
-			for index, char := range Currentdatagame.OriginalWord {
-				if letter == string(char) {
-					Currentdatagame.Hidden_word[index] = letter // Remplacement de _ avec la lettre devinée précedemment
-				}
+	if presentInWord { // Si la lettre est présente dans le mot
+		for index, char := range Currentdatagame.OriginalWord {
+			if Currentdatagame.CurrentLetter == string(char) {
+				Currentdatagame.Hidden_word[index] = Currentdatagame.CurrentLetter // Remplacement de _ avec la lettre devinée précedemment
 			}
-			time.Sleep(1 * time.Second)
+		}
 		} else { // Si la lettre n'est pas dans le mot
-			fmt.Println("La lettre", letter, "n'est pas dans le mot")
-			time.Sleep(1 * time.Second)
 			if Currentdatagame.Try < 9 { // S'il reste encore des essais possibles
 				Currentdatagame.Try++ // Incrémentation du compteur d'essais
-				fmt.Println("Il ne vous reste plus que", 10-Currentdatagame.Try, "essais")
 			} else { // Si tous les essais ont été utilisées
-				fmt.Println("Perdu ! Vous n'avez plus d'essais disponibles")
-				fmt.Println("Le mot était", Currentdatagame.OriginalWord)
-				time.Sleep(3 * time.Second)
-				Exit() // Sortie du jeu
+				Currentdatagame.Running = false
 			}
 		}
-		Clear()
 		fmt.Println(Currentdatagame.Hidden_word) 
-	}
+
 	for index, _ := range Currentdatagame.OriginalWord { // Boucle qui vérifie s'il y a encore des underscore dans le mot caché
 		if Currentdatagame.Hidden_word[index] == "_" {
-			wordNotRevealed = true
+			Currentdatagame.WordRevealed = false
 			RunHangman() // Reprise du jeu
 			break
 		}
 	}
-	if wordNotRevealed == false { // Si le mot est deviné entièrement
+	if Currentdatagame.WordRevealed == true { // Si le mot est deviné entièrement
 		fmt.Println("Felicitations ! Vous avez déviné !")
 		time.Sleep(3 * time.Second)
 		Exit() // Sortie du jeu
+	}
+*/
+}
+
+func CheckUsedLetter() { // Verifie si la lettre entrée a déja été utilisée, sinon elle est ajoutée a la liste 
+	for _, char := range Currentdatagame.Used_letters {
+		if Currentdatagame.CurrentLetter == string(char) {
+
+		} else {
+			Currentdatagame.Used_letters = append(Currentdatagame.Used_letters, Currentdatagame.CurrentLetter)
+		}
+	}
+}
+
+func LetterPresent() { // Verifie si la lettre est présente dans le mot
+	presentInWord := false
+	presentInWord = false // Reinitialisation de la variable
+	for i := 0; i < len(Currentdatagame.OriginalWord); i++ { // Boucle qui vérifie si la lettre entrée est présente dans le mot
+		if Currentdatagame.CurrentLetter == string(Currentdatagame.OriginalWord[i]) {
+		presentInWord = true // Si la lettre est présente, la variable passe vraie
+		}
+	}
+	if presentInWord { // Si la lettre est présente dans le mot
+		for index, char := range Currentdatagame.OriginalWord {
+			if Currentdatagame.CurrentLetter == string(char) {
+				Currentdatagame.Hidden_word[index] = Currentdatagame.CurrentLetter // Remplacement de _ avec la lettre devinée précedemment
+			}
+		}
+		} else { // Si la lettre n'est pas dans le mot
+			if Currentdatagame.Try < 9 { // S'il reste encore des essais possibles
+				Currentdatagame.Try++ // Incrémentation du compteur d'essais
+			} else { // Si tous les essais ont été utilisées
+				Currentdatagame.Running = false
+			}
+		}
+}
+
+func CheckWordRevealed() { // Fonction qui vérifie si le mot à été entièrement deviné
+	for index, _ := range Currentdatagame.OriginalWord { // Boucle qui vérifie s'il y a encore des underscore dans le mot caché
+		if Currentdatagame.Hidden_word[index] == "_" {
+			Currentdatagame.WordRevealed = false
+			break
+		} else {
+			Currentdatagame.WordRevealed = true
+		}
 	}
 }
