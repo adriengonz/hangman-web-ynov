@@ -13,15 +13,26 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	case "/test":
 		fmt.Printf("test page")
 	case "/main":
-		if Currentdatagame.Running {
+		if Currentdatagame.Running { // Si une partie est en cours
 		Currentdatagame.Pseudo = r.FormValue("name")
 		Currentdatagame.CurrentLetter = r.FormValue("letter")
 		RunHangman()
 		startmainpage(w)
-		} else {
+		} else { // Si la partie est terminée
+			if Currentdatagame.WordRevealed { // Si le joueur a gagné, on redirige vers la page de victoire
+				
+				fmt.Println("[VERBOSE WEB] Redirection vers win page")
+			} else { // Si le joueur a perdu, on redirige vers la page de défaite
+
+				fmt.Println("[VERBOSE WEB] Redirection vers lose page")
+			}
 
 		}
 		// Selon si perdu ou gagné, lancer une autre page
+	case "/win":
+		fmt.Fprintf(w, "t'as gagné chef")
+	case "/lose":
+		fmt.Fprintf(w, "t'as perdu mdr")
 	default:
 		fmt.Println(Currentdatagame.Pseudo)
 		//Currentdatagame.OriginalWord = WordPicker(RandomNumber()) // Initalisation du mot aléatoire a faire deviner

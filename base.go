@@ -103,7 +103,7 @@ func LetterPresent() { // Verifie si la lettre est présente dans le mot
 				Currentdatagame.Try++ // Incrémentation du compteur d'essais
 				fmt.Println("[VERBOSE] Il reste encore ", 10-Currentdatagame.Try, "essais")
 			} else { // Si tous les essais ont été utilisées
-				Currentdatagame.Running = false
+				Currentdatagame.Running = false // Arret du jeu
 				fmt.Println("[VERBOSE] Le mot n'a pas été deviné et il ne reste aucune tentative")
 			}
 		}
@@ -119,6 +119,7 @@ func CheckWordRevealed() { // Fonction qui vérifie si le mot à été entièrem
 	}
 	// à des fins de tests
 	if Currentdatagame.WordRevealed {
+		Currentdatagame.Running = false // Arret du jeu
 		fmt.Println("[VERBOSE] Le mot a été deviné !")
 	}
 }
