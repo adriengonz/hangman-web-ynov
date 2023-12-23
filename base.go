@@ -11,15 +11,18 @@ import (
 
 func RunHangman() { // Fonction majeure du jeu
 	if Currentdatagame.CurrentLetter !="" {
+		fmt.Println("Lettre utilisée :", Currentdatagame.CurrentLetter)
 		CheckUsedLetter()
 		fmt.Println("[VERBOSE] Le check de la lettre utilisée a été effectué")
+		fmt.Println("[VERBOSE]", Currentdatagame.Used_letters)
 		LetterPresent()
 		fmt.Println("[VERBOSE] Le check de la lettre dans le mot a été effectué")
 		CheckWordRevealed()
 		fmt.Println("[VERBOSE] Le check du mot révélé a été effectué")
+		Currentdatagame.CurrentLetter = ""
+		fmt.Println("[VERBOSE] La lettre temporaire a été vidée")
 	}
-	Currentdatagame.CurrentLetter = ""
-	fmt.Println("[VERBOSE] La lettre temporaire a été vidée")
+	
 /*
 	presentInWord := false // Valeur qui vérifie si la lettre est présente dans le mot caché
 	draw_hangman(Currentdatagame.Try) // Appel de la fonction qui affiche le pendu
@@ -68,13 +71,16 @@ func RunHangman() { // Fonction majeure du jeu
 */
 }
 
-func CheckUsedLetter() { // Verifie si la lettre entrée a déja été utilisée, sinon elle est ajoutée a la liste 
-	for _, char := range Currentdatagame.Used_letters {
+func CheckUsedLetter() { // Verifie si la lettre entrée a déja été utilisée, sinon elle est ajoutée a la liste
+	letterused := false // On initialise la valeur en faux
+	for _, char := range Currentdatagame.Used_letters { // Si la lettre à deja été utilisé (si elle est trouvé dans la liste), on modifie la valeur de letterused
 		if Currentdatagame.CurrentLetter == string(char) {
-
-		} else {
-			Currentdatagame.Used_letters = append(Currentdatagame.Used_letters, Currentdatagame.CurrentLetter)
+			letterused = true
+			break
 		}
+	}
+	if !letterused { // Si la lettre n'est pas dans la liste, on l'ajoute
+		Currentdatagame.Used_letters = append(Currentdatagame.Used_letters, Currentdatagame.CurrentLetter)
 	}
 }
 
@@ -95,19 +101,24 @@ func LetterPresent() { // Verifie si la lettre est présente dans le mot
 		} else { // Si la lettre n'est pas dans le mot
 			if Currentdatagame.Try < 9 { // S'il reste encore des essais possibles
 				Currentdatagame.Try++ // Incrémentation du compteur d'essais
+				fmt.Println("[VERBOSE] Il reste encore ", 10-Currentdatagame.Try, "essais")
 			} else { // Si tous les essais ont été utilisées
 				Currentdatagame.Running = false
+				fmt.Println("[VERBOSE] Le mot n'a pas été deviné et il ne reste aucune tentative")
 			}
 		}
 }
 
 func CheckWordRevealed() { // Fonction qui vérifie si le mot à été entièrement deviné
+	Currentdatagame.WordRevealed = true // On initialise la valeur comme si le mot etait deviné, et si il y a encore des "_", la valeur reviendra en false
 	for index, _ := range Currentdatagame.OriginalWord { // Boucle qui vérifie s'il y a encore des underscore dans le mot caché
 		if Currentdatagame.Hidden_word[index] == "_" {
 			Currentdatagame.WordRevealed = false
 			break
-		} else {
-			Currentdatagame.WordRevealed = true
 		}
+	}
+	// à des fins de tests
+	if Currentdatagame.WordRevealed {
+		fmt.Println("[VERBOSE] Le mot a été deviné !")
 	}
 }
