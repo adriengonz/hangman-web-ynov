@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 // Si y a une lettre en double, on fait rien
 // Le dessin Hangman se basera sur les lettres deja utilisées (essais)
-// Stocker le resultat (gagné ou perdu) dans la variable gameengine et selon le resultat, 
+// Stocker le resultat (gagné ou perdu) dans la variable gameengine et selon le resultat,
 // rediriger vers la page web perdu ou gagné
 
 func RunHangman() { // Fonction majeure du jeu
@@ -15,10 +16,17 @@ func RunHangman() { // Fonction majeure du jeu
 		CheckUsedLetter()
 		fmt.Println("[VERBOSE] Le check de la lettre utilisée a été effectué")
 		fmt.Println("[VERBOSE]", Currentdatagame.Used_letters)
+
+		Currentdatagame.Used_letters_string = ConvertListToString(Currentdatagame.Used_letters) // Met à jour les lettres utilisés sur la page web
+
 		LetterPresent()
 		fmt.Println("[VERBOSE] Le check de la lettre dans le mot a été effectué")
+
+		Currentdatagame.Hidden_word_string = ConvertListToString(Currentdatagame.Hidden_word) // Met à jour le mot sur la page web
+
 		CheckWordRevealed()
 		fmt.Println("[VERBOSE] Le check du mot révélé a été effectué")
+
 		Currentdatagame.CurrentLetter = ""
 		fmt.Println("[VERBOSE] La lettre temporaire a été vidée")
 	}
@@ -122,4 +130,8 @@ func CheckWordRevealed() { // Fonction qui vérifie si le mot à été entièrem
 		Currentdatagame.Running = false // Arret du jeu
 		fmt.Println("[VERBOSE] Le mot a été deviné !")
 	}
+}
+
+func ConvertListToString(char []string) string { // Fonction qui convertit une liste de caractères en chaîne de caractères (utile pour afficher les lettres et le mot sur la page web)
+	return strings.Join(char, " ")
 }
