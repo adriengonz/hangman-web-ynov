@@ -20,13 +20,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		startmainpage(w)
 		} else { // Si la partie est terminée
 			if Currentdatagame.WordRevealed { // Si le joueur a gagné, on redirige vers la page de victoire
-				
+				http.Redirect(w,r, "/win", http.StatusSeeOther)
 				fmt.Println("[VERBOSE WEB] Changement de la page en win page")
-			} else { // Si le joueur a perdu, on redirige vers la page de défaite -> Faire une win(w) et lose(w)
-
+			} else { // Si le joueur a perdu, on redirige vers la page de défaite
+				http.Redirect(w,r, "/lose", http.StatusSeeOther)
 				fmt.Println("[VERBOSE WEB] Changement de la page en lose page")
 			}
-
 		}
 		// Selon si perdu ou gagné, lancer une autre page
 	case "/win":
