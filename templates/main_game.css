@@ -26,8 +26,7 @@ body {
   
   .flexbox {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
   }
 
   .rcorners1 {
@@ -35,8 +34,9 @@ body {
     border-radius: 25px;
     background: #F1F15E;
     padding: 30px;
-    width: 800px;
-    height: 500px;
+    height: 540px;
+    width: 50%;
+    margin-left: 2%;
   }
 
   button {
@@ -49,6 +49,11 @@ body {
     height : 70px;
     width : 70px;
     background-color: #00000000;
+  }
+
+  .tree {
+    height: 600px;
+    width: 600px;
   }
 
   /*
