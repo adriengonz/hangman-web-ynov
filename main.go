@@ -14,7 +14,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("test page")
 	case "/main":
 		if Currentdatagame.Running { // Si une partie est en cours
-		Currentdatagame.Pseudo = r.FormValue("name")
+			if Currentdatagame.Pseudo == "" { // Si il n'y a pas de pseudo, on l'initialise
+				Currentdatagame.Pseudo = r.FormValue("name")
+			}
 		Currentdatagame.CurrentLetter = r.FormValue("letter")
 		RunHangman()
 		startmainpage(w)
@@ -29,7 +31,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		}
 		// Selon si perdu ou gagné, lancer une autre page
 	case "/win":
-		fmt.Fprintf(w, "t'as gagné chef")
+		startwinpage(w)
 	case "/lose":
 		fmt.Fprintf(w, "t'as perdu mdr")
 	default:

@@ -1,0 +1,59 @@
+body {
+  font-family: SF-Pro, serif;
+  background: linear-gradient(-45deg, #FCFC62, #FDCD4A, #FE9E31, #FF4000);
+	background-size: 400% 400%;
+	animation: gradient 10s ease infinite;
+	height: 100vh;
+}
+  
+@font-face { font-family: SF-Pro; src: url('./SF-Pro.ttf'); }
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+  
+  .title {
+    text-align: center;
+  }
+  
+  .flexbox {
+    display: flex;
+    text-align: center;
+  }
+
+  .rcorners1 {
+    text-align: center;
+    border-radius: 25px;
+    background: #F1F15E;
+    padding: 30px;
+    height: 540px;
+    width: 50%;
+    margin-left: 2%;
+  }
+
+  button {
+    background-color: #00000000;
+    border: none;
+    cursor: pointer;
+  }
+
+  .orange {
+    height : 70px;
+    width : 70px;
+    background-color: #00000000;
+  }
+
+  .tree {
+    height: 600px;
+    width: 600px;
+  }
+
+  

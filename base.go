@@ -11,6 +11,7 @@ import (
 // rediriger vers la page web perdu ou gagné
 
 func RunHangman() { // Fonction majeure du jeu
+	fmt.Println("PSEUDO /", Currentdatagame.Pseudo)
 	if Currentdatagame.CurrentLetter !="" {
 		fmt.Println("Lettre utilisée :", Currentdatagame.CurrentLetter)
 		CheckUsedLetter()
