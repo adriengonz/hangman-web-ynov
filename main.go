@@ -54,8 +54,11 @@ func main() {
 	running := true
 	Currentdatagame = &GameData{} // Initialisation d'une nouvelle instance de GameData
 	Currentdatagame.Running = true
-	Currentdatagame.OriginalWord = "OUIFI"
-	Currentdatagame.Hidden_word = []string{"_", "_", "_", "_", "_"}
+	//Currentdatagame.OriginalWord = "OUIFI"
+	//Currentdatagame.Hidden_word = []string{"_", "_", "_", "_", "_"}
+	Currentdatagame.OriginalWord = WordPicker(RandomNumber())
+	Hidden()
+	fmt.Println("Mot :", Currentdatagame.OriginalWord)
 	fmt.Println("Server running on port 8080")
 	fmt.Println("Access: http://localhost:8080")
 	if running {
