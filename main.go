@@ -33,33 +33,19 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	case "/win":
 		startwinpage(w)
 	case "/lose":
-		fmt.Fprintf(w, "t'as perdu mdr")
+		startlosepage(w)
 	default:
-		fmt.Println(Currentdatagame.Pseudo)
-		//Currentdatagame.OriginalWord = WordPicker(RandomNumber()) // Initalisation du mot aléatoire a faire deviner
-		//Hidden() // Modificiton du mot généré en underscore
+		Reset()
+		Currentdatagame.OriginalWord = WordPicker(RandomNumber()) // Initalisation du mot aléatoire a faire deviner
+		Hidden() // Modificiton du mot généré en underscore
 		startpage(w)
 	}
 }
-
-/*
-func renderTemplate (w http.ResponseWriter, htmlfile string) { // Permet d'afficher une page web lors de l'appel de la fonction
-	t, err := template.ParseFiles("./templates/" + htmlfile + ".html")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError) // Retourne une erreur dans les logs si une erreur est produite
-	}
-	t.Execute(w, nil)
-}
-*/
 
 func main() {
 	running := true
 	Currentdatagame = &GameData{} // Initialisation d'une nouvelle instance de GameData
 	Currentdatagame.Running = true
-	//Currentdatagame.OriginalWord = "OUIFI"
-	//Currentdatagame.Hidden_word = []string{"_", "_", "_", "_", "_"}
-	Currentdatagame.OriginalWord = WordPicker(RandomNumber())
-	Hidden()
 	fmt.Println("Mot :", Currentdatagame.OriginalWord)
 	fmt.Println("Server running on port 8080")
 	fmt.Println("Access: http://localhost:8080")
@@ -69,16 +55,4 @@ func main() {
 		http.HandleFunc("/", handler)     // Initilaise la page par défaut
 		http.ListenAndServe(":8080", nil) // Lance le serveur sur le port 8080
 	}
-	
-
-	/*
-		PrintHangmanAscii() // Appel de la fonction pour afficher "Hangman" en ascii
-		fmt.Println("Bienvenue sur Hangman !")
-		fmt.Println("La partie va bientôt commencer..")
-		time.Sleep(4 * time.Second)
-		Clear()
-		currentdatagame.originalWord = WordPicker(RandomNumber()) // Initalisation du mot aléatoire a faire deviner
-		Hidden() // Modificiton du mot généré en underscore
-		RunHangman() // Lancement du jeu
-	*/
 }

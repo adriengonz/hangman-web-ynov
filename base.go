@@ -5,13 +5,7 @@ import (
 	"strings"
 )
 
-// Si y a une lettre en double, on fait rien
-// Le dessin Hangman se basera sur les lettres deja utilisées (essais)
-// Stocker le resultat (gagné ou perdu) dans la variable gameengine et selon le resultat,
-// rediriger vers la page web perdu ou gagné
-
 func RunHangman() { // Fonction majeure du jeu
-	fmt.Println("PSEUDO /", Currentdatagame.Pseudo)
 	if Currentdatagame.CurrentLetter !="" {
 		fmt.Println("Lettre utilisée :", Currentdatagame.CurrentLetter)
 		CheckUsedLetter()
@@ -66,6 +60,7 @@ func LetterPresent() { // Verifie si la lettre est présente dans le mot
 				fmt.Println("[VERBOSE] Il reste encore ", 10-Currentdatagame.Try, "essais")
 			} else { // Si tous les essais ont été utilisées
 				Currentdatagame.Running = false // Arret du jeu
+				Currentdatagame.Try++ // Incrémentation du compteur d'essais
 				fmt.Println("[VERBOSE] Le mot n'a pas été deviné et il ne reste aucune tentative")
 			}
 		}

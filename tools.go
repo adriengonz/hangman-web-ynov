@@ -52,3 +52,15 @@ func Hidden() { // Fonction qui compte le nombre de caractères dans le mot et q
 	}
 	fmt.Println(Currentdatagame.Hidden_word)
 }
+
+func Reset() {
+	Currentdatagame.OriginalWord = ""
+	Currentdatagame.Hidden_word = []string{}
+	Currentdatagame.Used_letters = []string{}
+	Currentdatagame.Hidden_word_string = ""
+	Currentdatagame.Used_letters_string = ""
+	Currentdatagame.Try = 0
+	Currentdatagame.Pseudo = ""
+	Currentdatagame.WordRevealed = false
+	Currentdatagame.Running = true
+}
