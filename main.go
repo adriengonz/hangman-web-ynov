@@ -35,9 +35,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	case "/lose":
 		startlosepage(w)
 	default:
-		Reset()
+		Reset() // Reinitialise les valeurs
+		fmt.Println("[DEBUG START] Valeurs réinitialisées")
 		Currentdatagame.OriginalWord = WordPicker(RandomNumber()) // Initalisation du mot aléatoire a faire deviner
 		Hidden() // Modificiton du mot généré en underscore
+		fmt.Println("[DEBUG START] Mot :", Currentdatagame.OriginalWord)
 		startpage(w)
 	}
 }
@@ -46,7 +48,6 @@ func main() {
 	running := true
 	Currentdatagame = &GameData{} // Initialisation d'une nouvelle instance de GameData
 	Currentdatagame.Running = true
-	fmt.Println("Mot :", Currentdatagame.OriginalWord)
 	fmt.Println("Server running on port 8080")
 	fmt.Println("Access: http://localhost:8080")
 	if running {
