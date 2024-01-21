@@ -56,4 +56,19 @@ body {
     width: 600px;
   }
 
-  
+  .winlosetext {
+    text-align: center;
+  }
+
+  .tree2 {
+    height: 500px;
+    width: 500px;
+  }
+
+  .PlayAgainButton {
+    text-align: center;
+    background: #FE9E31;
+    border-radius: 6px;
+    width: 70px;
+    height: 40px;
+  }

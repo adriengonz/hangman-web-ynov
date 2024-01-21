@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Hangman Game</title>
+
+  <link rel="stylesheet" href="/templates/main.css">
+</head>
+<body>
+  <h1 class="winlosetext">Perdu ! Le mot était {{.OriginalWord}}</h1>
+  <button onclick="location.href = '/';" class="PlayAgainButton">Rejouer</button>
+  <div class="gradient flexbox">
+  <img class="tree2 flexbox" src="/templates/img/tree/tree{{.Try}}.png"/>
+    </div>
+</body>
+</html>
