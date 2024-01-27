@@ -1,7 +1,6 @@
 package main
 
 import (
-	//"time"
 	"fmt"
 	"html/template"
 	"net/http"
