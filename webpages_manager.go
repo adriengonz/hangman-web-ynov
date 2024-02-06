@@ -49,3 +49,25 @@ func startlosepage(w http.ResponseWriter) {
 	}
 	t.Execute(w, Currentdatagame)
 }
+
+func starttutopage(w http.ResponseWriter) {
+	var fileName = "./templates/tuto.html"
+	t, err := template.ParseFiles(fileName)
+	if err != nil {
+		fmt.Println("Error when parsing file", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError) // Retourne une erreur dans les logs si une erreur est produite
+		return
+	}
+	t.Execute(w, Currentdatagame)
+}
+
+func startinitpage(w http.ResponseWriter) {
+	var fileName = "./templates/init.html"
+	t, err := template.ParseFiles(fileName)
+	if err != nil {
+		fmt.Println("Error when parsing file", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError) // Retourne une erreur dans les logs si une erreur est produite
+		return
+	}
+	t.Execute(w, Currentdatagame)
+}

@@ -29,6 +29,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 		// Selon si perdu ou gagné, lancer une autre page
+	case "/tuto":
+		starttutopage(w)
+	case "/init":
+		startinitpage(w)
 	case "/win":
 		startwinpage(w)
 	case "/lose":

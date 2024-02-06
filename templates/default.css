@@ -1,45 +1,148 @@
 body {
-  font-family: SF-Pro, serif;
-  background: linear-gradient(-45deg, #FCFC62, #FDCD4A, #FE9E31, #FF4000);
-	background-size: 400% 400%;
-	animation: gradient 10s ease infinite;
-	height: 100vh;
+    font-family: SF-Pro, serif;
+    background:rgb(255, 255, 255)
 }
-  
-@font-face { font-family: SF-Pro; src: url('./SF-Pro.ttf'); }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-.rcorners1 {
-  text-align: center;
-  border-radius: 25px;
-  background: #F1F15E;
-  padding: 30px;
-  width: 600px;
-  height: 200px;
+h1 {
+    background: linear-gradient(to left, rgb(255, 183, 59), rgb(27, 207, 6));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.flexbox {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.large-heading {
+    font-size: 80px;
 }
 
-.sendbutton {
-    background: #FE9E31;
-    border-radius: 6px;
+h2 {
+    text-align: center;
 }
 
-.title {
-  text-align: center;
+button {
+    
+    border : 0;
+    background: transparent;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    padding: 20px 50px;
+    border-radius: 30px; 
+    cursor: pointer;
+    font-size: 1.2em;
+    box-shadow: 0px -0px 0px 0px rgba(143,64,248,.5), 0px 0px 0px opx rgba(39,200,255,.5);
+    transition: all .2s;
+}
+
+button::after {
+    content:"" ;
+    color: white;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(225deg,#27d86c 0%, #26caf8 50%, #c625d0 100%);
+    position: absolute;
+    top: -50px;
+    left: -100px;
+    z-index: -1;
+    transition: all .5s;
+}
+
+button:hover::after {
+    transform: rotate(150deg);
+}
+
+button:hover {
+    transform: translate(0, -6px);
+    box-shadow: 10px -10px 25px 0 rgba(143,64,248,.5) -10px 10px 25px 0px rgba(39,200,255,.5,);
+}
+
+.surlignement {
+    text-decoration: none;
+}
+
+.game-button::after {
+    content:"" ;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(225deg,#FCFC62 0%, #FE9E31 50%, #FF4000 100%);
+    position: absolute;
+    top: -50px;
+    left: -100px;
+    z-index: -1;
+    transition: all .5s;
+}
+
+
+@media (prefers-color-scheme: light){
+    body {
+        background-color: #fff;
+    }
+
+}
+
+@media (prefers-color-scheme: dark){
+    h1 {
+        background: linear-gradient(to left, rgb(251, 71, 0), rgb(15, 151, 0));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    body {
+        background-color: #333;
+    }
+    button {
+        border : 0;
+        background: transparent;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        padding: 20px 50px;
+        border-radius: 30px; 
+        cursor: pointer;
+        font-size: 1.2em;
+        box-shadow: 0px -0px 0px 0px rgba(78, 0, 180, 0.5), 0px 0px 0px opx rgba(0, 132, 175, 0.5);
+        transition: all .2s;
+    }
+   
+
+    button,
+button a.surlignement {
+    color: #ffffff; 
+    }
+    
+    button::after {
+        content:"" ;
+        width: 400px;
+        height: 400px;
+        background: linear-gradient(225deg,#008b35 0%, #5100ff 50%, #850052 100%);
+        position: absolute;
+        top: -50px;
+        left: -100px;
+        z-index: -1;
+        transition: all .5s;
+    }
+    .game-button::after {
+        content:"" ;
+        width: 400px;
+        height: 400px;
+        background: linear-gradient(225deg,#ff0000 0%, #ff8800 50%, #bc2f00 100%);
+        position: absolute;
+        top: -50px;
+        left: -100px;
+        z-index: -1;
+        transition: all .5s;
+    }
+
 }
