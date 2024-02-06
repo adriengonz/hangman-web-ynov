@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel HangFruit</title>
+</head>
+<body>
+    
+    <!-- Section en-tête -->
+    <h1>Tutoriel HangFruit</h1>
+    
+    <h2>
+   <!-- Section du contenu du tutoriel -->
+   <img src="/static/img/Livre.png" alt="">
+   <div id="firstPart">
+        <p>Pour jouer à Hang Fruit, vous avez besoin d'imagination, d'une dose de logique et surtout d'amour pour les fruits =)</p>
+        <p>Tout d'abord, vous verrez un certain nombre de tirets</p>
+        <p>_ _ _ _ _</p>
+        <p>Combien de tirets voyez-vous ?</p>
+    
+        <button onclick="submitAnswer('Five')">5</button>
+        <button onclick="submitAnswer('One')">1</button>
+        <button onclick="submitAnswer('Three')">3</button>
+    </div>
+    <div id="resultText" style="display:none;"></div>
+    
+    <div id="additionalText2" style="display:none;">
+        <p>Bien ! Nous savons que le mot contient six lettres. Bravo !</p>
+        <p>Comme vous avez testé notre tutoriel, vous aurez droit à un indice.</p>
+        <p>Tous les mots cachés dans notre jeu sont des noms de fruits.</p>
+        <p>Maintenant que nous le savons, nous avons deux indices... Un mot de 5 lettres et c'est un fruit.</p>
+        <p>Comme nom de fruit à cinq lettres, nous avons : Pêche, Prune, Pomme.</p>
+        
+        <button onclick="submitAnswer('Skip')">Skip</button>
+    </div>
+    
+    <div id="additionalText3" style="display:none;">
+        <p>Essayons Pomme ! Qui n'aime pas les pommes ?</p>
+        <p>_ _ _ _ _</p>
+        <p class="insertflash">Insert a</p>
+        <input type="text" id="userInput" placeholder="Votre réponse">
+        <button onclick="submitUserAnswer()">Valider</button>
+    </div>
+
+    <div id="additionalText4" style="display:none;">
+        <p>Bien jouer !</p>
+        <p>a _ _ _ _</p>
+        <p class="insertflash">Insert p</p>
+        <input type="text" id="userInput" placeholder="Votre réponse">
+        <button onclick="submitUserAnswer()">Valider</button>
+    </div>
+
+    <div id="additionalText5" style="display:none;">
+        <p>Tres Bien !</p>
+        <p>a p p _ _</p>
+        <p class="insertflash">Insert l</p>
+        <input type="text" id="userInput" placeholder="Votre réponse">
+        <button onclick="submitUserAnswer()">Valider</button>
+    </div>
+
+    <div id="additionalText6" style="display:none;">
+        <p>Super !</p>
+        <p>a p p l _</p>
+        <p class="insertflash">Insert e</p>
+        <input type="text" id="userInput" placeholder="Votre réponse">
+        <button onclick="submitUserAnswer()">Valider</button>
+    </div>
+
+    <div id="additionalText7" style="display:none;">
+        <p>apple</p>
+        <p>Nous y est !</p>
+          <p>
+        Beau Travail 
+            Tu es maintenant prêt pour notre jeu
+            retour au jeu.
+        </p>
+        <button onclick="skipTutorial()">Sortir</button>
+
+    </div>
+    </h2>
+    <link rel="stylesheet" href="/static/tuto.css">
+    <script src="/static/script.js"></script>
+</body>
+</html>

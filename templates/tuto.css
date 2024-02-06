@@ -1,0 +1,125 @@
+body {
+    font-family: SF-Pro, serif;
+    background: linear-gradient(-45deg, #27d86c, #26caf8, rgb(242, 66, 255), #ff5be900);
+      background-size: 400% 400%;
+      animation: gradient 10s ease infinite;
+      height: 100vh;
+}
+
+img {
+    position: absolute;
+    right: 50px;
+}
+
+.insertflash {
+    animation:flash 1.2s infinite ;
+}
+
+@keyframes flash{
+    25%{
+        color: #ffffff;
+    }
+}
+
+@font-face { font-family: SF-Pro; src: url('./SF-Pro.ttf'); }
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+ h1 {
+    text-align: center;
+}
+
+
+  h2 {
+    text-align: center;
+    border-radius: 25px;
+    background: #ffffff;
+    padding: 30px;
+    height: 540px;
+    width: 50%;
+    margin-left: 2%;
+  }
+
+  button {
+    border : 0;
+    background: transparent;
+    color: rgb(0, 0, 0);
+    position: relative;
+    overflow: hidden;
+    padding: 10px 50px;
+    border-radius: 30px; 
+    cursor: pointer;
+    font-size: 0.6em;
+    box-shadow: 0px -0px 0px 0px rgba(143,64,248,.5), 0px 0px 0px opx rgba(39,200,255,.5);
+    transition: all .2s;
+}
+
+button::after {
+    content:"" ;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(225deg,#27d86c 0%, #26caf8 50%, #c625d0 100%);
+    position: absolute;
+    top: -50px;
+    left: -100px;
+    z-index: -1;
+    transition: all .5s;
+}
+
+button:hover::after {
+    transform: rotate(150deg);
+}
+
+button:hover {
+    transform: translate(0, -6px);
+    box-shadow: 10px -10px 25px 0 rgba(143,64,248,.5) -10px 10px 25px 0px rgba(39,200,255,.5,);
+}
+
+
+@media (prefers-color-scheme: dark){
+
+  body {
+    font-family: SF-Pro, serif;
+    background: linear-gradient(-45deg, #008b35, #5100ff rgb(121, 1, 129), #000000);
+      background-size: 400% 400%;
+      animation: gradient 10s ease infinite;
+      height: 100vh;
+}
+
+  h2 {
+    color: #ffffff;
+    text-align: center;
+    border-radius: 25px;
+    background: #333;
+    padding: 30px;
+    height: 540px;
+    width: 50%;
+    margin-left: 2%;
+  }
+
+  button {
+    font-weight: bold;
+    border : 0;
+    background: transparent;
+    color: rgb(255, 255, 255);
+    position: relative;
+    overflow: hidden;
+    padding: 10px 50px;
+    border-radius: 30px; 
+    cursor: pointer;
+    font-size: 0.6em;
+    box-shadow: 0px -0px 0px 0px rgba(143,64,248,.5), 0px 0px 0px opx rgba(39,200,255,.5);
+    transition: all .2s;
+}
+
+}
